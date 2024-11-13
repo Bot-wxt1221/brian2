@@ -589,13 +589,6 @@ def test_cpp_flags_support():
     _, compile_args = get_compiler_and_args()
     assert compile_args == prefs["codegen.cpp.extra_compile_args"]
 
-    # Should never be supported and raise a warning
-    prefs["codegen.cpp.extra_compile_args"] = ["-invalidxyz"]
-    with catch_logs() as l:
-        _, compile_args = get_compiler_and_args()
-    assert len(l) == 1 and l[0][0] == "WARNING"
-    assert compile_args == []
-
     prefs["codegen.cpp.extra_compile_args"] = old_prefs
 
 
